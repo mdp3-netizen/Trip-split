@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // A trip can only be opened by someone who knows its code (the trip ID).
+    // Nobody can list all trips.
+    match /groups/{tripId} {
+      allow get, create, update, delete: if tripId.size() >= 6 && tripId.size() <= 40;
+      allow list: if false;
+
+      match /members/{memberId} {
+        allow read, write: if true;
+      }
+      match /expenses/{expenseId} {
+        allow read: if true;
+        allow write: if request.resource == null
+          || (request.resource.data.amountCents is int && request.resource.data.amountCents > 0);
+      }
+    }
+  }
+}

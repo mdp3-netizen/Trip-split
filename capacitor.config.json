@@ -1,0 +1,16 @@
+{
+  "appId": "com.tripkitty.app",
+  "appName": "Trip Kitty",
+  "webDir": "www",
+  "backgroundColor": "#0F7C86",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false,
+      "backgroundColor": "#0F7C86",
+      "showSpinner": false
+    }
+  },
+  "android": {
+    "adjustMarginsForEdgeToEdge": "auto"
+  }
+}
